@@ -1,0 +1,237 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;  /* White background */
+    color: #000;  /* Black text */
+  }
+
+.hamburger:hover{
+ cursor: pointer;
+}
+
+  /* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000; /* Black navbar */
+    padding: 10px 20px;
+    color: #ffffff; /* White text */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar > div {
+    display: flex;
+    align-items: center;
+}
+
+/* Centering the search bar */
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-left: -10px;
+}
+.navbar img{
+  cursor: pointer;
+  margin-left: 15px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* White search bar */
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-left: 20px;
+    width: 18%; /* Adjust width as needed */
+    max-width: 400px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    margin-left: 5px;
+    background-color: transparent;
+    color: #000000; /* Black text */
+    width: 100%;
+}
+
+.search-bar i {
+    color: #000000; /* Black search icon */
+}
+.search-bar i :hover{
+    cursor: pointer;
+}
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    height: 100%;
+    background: #000;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: 0.3s ease-in-out;
+    padding-top: 60px;
+    color: #fff;
+    z-index: 999;
+  }
+  
+  .sidebar.active {
+    left: 0;
+  }
+  
+  .categories {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .categories li {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+  }
+  .categories li:hover {
+    background-color: #363738;
+  }
+  
+  .categories li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .profile {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+
+/* Profile Card */
+.profile-card {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 250px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  z-index: 1001;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.profile-card-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 10px auto;
+  display: block;
+}
+
+.profile-card h2 {
+  margin: 10px 0 5px;
+}
+
+.profile-card p {
+  color: gray;
+  font-size: 14px;
+}
+
+  
+  .cart-icon {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    margin-top: 70px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 12px;
+    text-align: center;
+    padding-bottom: 25px;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.01);
+  }
+  
+  .card img {
+    height: 200px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  .card h3{
+    margin-top: 8px;
+  }
+  
+  .card p{
+    padding: 0;
+    margin-top: -5px;
+  }
+
+  .profile-icon{
+    filter: invert();
+    position: relative;
+    right: 5%;
+  }
+  
+  .add-btn {
+    display: none;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .home-icon:hover{
+    cursor: pointer;
+  }
+  
+  .card:hover .add-btn {
+    display: block;
+  }
+  .card button{
+    margin-top: 15px;
+  }
+  

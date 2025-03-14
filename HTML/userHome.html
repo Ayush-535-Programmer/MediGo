@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Delivery App</title>
+  <link rel="stylesheet" href="../CSS\userHomeStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="hamburger" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+    
+    <div class="nav-center">
+      <div class="home-icon">
+        <i class="fas fa-home"></i>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search medicines...">
+        <i class="fas fa-search"></i>
+      </div>
+      <img class="cart-icon" style="filter: invert();" width="25px" src="../Images\icons\shopping-bag.png" alt="">
+
+    </div>
+    <div class="profile-icon">
+      <img width="25px" src="../Images/profile_icon.jpg" alt="Profile" class="profile-img" onclick="toggleProfileCard()" id="profile-img">
+    </div>
+  </nav>
+  
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <ul class="categories">
+      <li><a href="#">Pain Relief</a></li>
+      <li><a href="#">Cold & Flu</a></li>
+      <li><a href="#">Vitamins</a></li>
+      <li><a href="#">Digestive Health</a></li>
+      <li><a href="#">Skin Care</a></li>
+    </ul>
+    </div>
+  </aside>
+
+
+ <!-- Profile Card (Hidden by Default) -->
+<div class="profile-card" id="profile-card">
+  <div class="profile-header">
+      <h3>User Profile</h3>
+      <i class="fas fa-times close-btn" onclick="toggleProfileCard()"></i>
+  </div>
+  <img src="../Images/profile_icon.jpg" alt="Profile" class="profile-card-img" id="profile-card-img">
+  <h2 id="profile-card-name">Ayush Mishra</h2>
+  <p id="profile-card-email">klas@gmail.com</p>
+  
+  <div class="profile-details">
+      <p><strong>Phone:</strong> <span id="profile-card-phone">48973589</span></p>
+      <p><strong>Gender:</strong> <span id="profile-card-gender">Male</span></p>
+      <p><strong>Address:</strong> <span id="profile-card-address">UP India</span></p>
+      <p><strong>DOB:</strong> <span id="profile-card-dob">2025-02-20</span></p>
+  </div>
+</div>
+
+
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
+      <img src="../Images/medicine1.jpg" alt="Medicine">
+      <h3>Azax 500 (Ranbaxy)</h3>
+      <p>The medicine is for general purpose use only </p>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
+      <img src="../Images/medicine2.jpg" alt="Medicine">
+      <h3>LCZ PLUS</h3>
+      <p>The medicine is for general purpose use only </p>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
+      <img src="../Images/medicine3.jpg" alt="Medicine">
+      <h3>OTRIVIN NASAL SPRAY</h3>
+      <p>The medicine is for general purpose use only </p>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
+      <img src="../Images/medicine4.jpg" alt="Medicine">
+      <h3>CROCIN ADVANCE</h3>
+      <p>The medicine is for general purpose use only </p>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
+      <img src="../Images/medicine5.jpg" alt="Medicine">
+      <h3>AUGMENTIN 625 DUO</h3>
+      <p>The medicine is for general purpose use only </p>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </main>
+
+  <script src="../JavaScript\userHomeScript.js"></script>
+</body>
+</html>

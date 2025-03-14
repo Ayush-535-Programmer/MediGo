@@ -1,0 +1,20 @@
+[
+  {
+    "name": "John Doe",
+    "phone": "1234567890",
+    "email": "john@example.com",
+    "password": "password123",
+    "address": "123 Street",
+    "gender": "Male",
+    "dob": "01-01-2000"
+  },
+  {
+    "name": "Ayush Mishra",
+    "phone": "48973589",
+    "email": "klas@gmail.com",
+    "password": "kjsadlfla",
+    "address": "UP India",
+    "gender": "Male",
+    "dob": "2025-02-20"
+  }
+]
