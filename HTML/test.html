@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Portal | Login & Signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            background: white;
+            box-shadow: var(--box-shadow);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .login-container {
+            left: 0;
+            z-index: 2;
+        }
+
+        .signup-container {
+            right: 0;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .container.active .login-container {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        .container.active .signup-container {
+            transform: translateX(-100%);
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .container.active .toggle-container {
+            transform: translateX(-100%);
+        }
+
+        .toggle-container h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .toggle-container p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .toggle-btn {
+            padding: 12px 40px;
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0 50px;
+            text-align: center;
+        }
+
+        .form h1 {
+            margin-bottom: 30px;
+            color: var(--dark-color);
+        }
+
+        .form-group {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: none;
+            background: #f5f7fa;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            background: #e6eaf0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 17px;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .btn {
+            padding: 12px 50px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.18);
+        }
+
+        .social-container {
+            margin: 25px 0;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin: 0 5px;
+            background: #f5f7fa;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container login-container">
+            <form class="form" id="login-form">
+                <h1>Login</h1>
+                <div class="social-container">
+                    <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+                    <div class="social-icon"><i class="fab fa-google"></i></div>
+                    <div class="social-icon"><i class="fab fa-linkedin-in"></i></div>
+                </div>
+                <p>Login with your credentials</p>
+                <div class="form-group">
+                    <input type="text" placeholder="Phone Number" required>
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+        <div class="form-container signup-container">
+            <form class="form" id="signup-form">
+                <h1>Sign Up</h1>
+                <div class="social-container">
+                    <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+                    <div class="social-icon"><i class="fab fa-google"></i></div>
+                    <div class="social-icon"><i class="fab fa-linkedin-in"></i></div>
+                </div>
+                <p>Create your account</p>
+                <div class="form-group">
+                    <input type="text" placeholder="Full Name" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Phone Number" required>
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us, please login with your personal info</p>
+            <button class="toggle-btn" id="toggle-btn">Sign Up</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            const signupToggleBtn = document.getElementById('signup-toggle');
+            const loginToggleBtn = document.getElementById('login-toggle');
+            const mobileSignupBtn = document.getElementById('mobile-signup-btn');
+            const mobileLoginBtn = document.getElementById('mobile-login-btn');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            
+            // Toggle between login and signup
+            signupToggleBtn.addEventListener('click', () => {
+                container.classList.add('active');
+                // Add fade-in animation to signup form elements
+                document.querySelectorAll('.signup-container .form-group, .signup-container h1, .signup-container p, .signup-container .btn')
+                    .forEach((el, i) => {
+                        setTimeout(() => {
+                            el.classList.add('fade-in');
+                        }, i * 100);
+                    });
+            });
+            
+            loginToggleBtn.addEventListener('click', () => {
+                container.classList.remove('active');
+                // Add fade-in animation to login form elements
+                document.querySelectorAll('.login-container .form-group, .login-container h1, .login-container p, .login-container .btn')
+                    .forEach((el, i) => {
+                        setTimeout(() => {
+                            el.classList.add('fade-in');
+                        }, i * 100);
+                    });
+            });
+            
+            // Mobile toggle
+            if (mobileSignupBtn) {
+                mobileSignupBtn.addEventListener('click', () => {
+                    container.classList.add('active');
+                });
+            }
+            
+            if (mobileLoginBtn) {
+                mobileLoginBtn.addEventListener('click', () => {
+                    container.classList.remove('active');
+                });
+            }
+            
+            // Form validation
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const phone = document.getElementById('login-phone');
+                const password = document.getElementById('login-password');
+                
+                // Validate phone
+                if (phone.value.trim() === '' || !/^\d{10}$/.test(phone.value.trim())) {
+                    phone.parentElement.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    phone.parentElement.parentElement.classList.remove('error');
+                }
+                
+                // Validate password
+                if (password.value.trim() === '') {
+                    password.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    password.parentElement.classList.remove('error');
+                }
+                
+                if (isValid) {
+                    // Animation for successful login
+                    document.querySelector('.login-container .btn').classList.add('pulse');
+                    
+                    // Here you would typically send the data to your server
+                    console.log('Login submitted:', {
+                        phone: phone.value,
+                        password: password.value
+                    });
+                    
+                    // Simulate successful login
+                    setTimeout(() => {
+                        alert('Login successful!');
+                        // Reset form
+                        loginForm.reset();
+                    }, 1500);
+                } else {
+                    // Shake animation for validation errors
+                    document.querySelectorAll('.login-container .error').forEach(el => {
+                        el.classList.add('shake');
+                        setTimeout(() => {
+                            el.classList.remove('shake');
+                        }, 500);
+                    });
+                }
+            });
+            
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const name = document.getElementById('signup-name');
+                const phone = document.getElementById('signup-phone');
+                const specialty = document.getElementById('specialty');
+                const password = document.getElementById('signup-password');
+                const confirmPassword = document.getElementById('confirm-password');
+                
+                // Validate name
+                if (name.value.trim() === '') {
+                    name.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    name.parentElement.classList.remove('error');
+                }
+                
+                // Validate phone
+                if (phone.value.trim() === '' || !/^\d{10}$/.test(phone.value.trim())) {
+                    phone.parentElement.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    phone.parentElement.parentElement.classList.remove('error');
+                }
+                
+                // Validate specialty
+                if (specialty.value === '') {
+                    specialty.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    specialty.parentElement.classList.remove('error');
+                }
+                
+                // Validate password
+                if (password.value.trim().length < 8) {
+                    password.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    password.parentElement.classList.remove('error');
+                }
+                
+                // Validate confirm password
+                if (confirmPassword.value !== password.value) {
+                    confirmPassword.parentElement.classList.add('error');
+                    isValid = false;
+                } else {
+                    confirmPassword.parentElement.classList.remove('error');
+                }
+                
+                if (isValid) {
+                    // Animation for successful signup
+                    document.querySelector('.signup-container .btn').classList.add('pulse');
+                    
+                    // Here you would typically send the data to your server
+                    console.log('Signup submitted:', {
+                        name: name.value,
+                        phone: phone.value,
+                        specialty: specialty.value,
+                        password: password.value
+                    });
+                    
+                    // Simulate successful signup
+                    setTimeout(() => {
+                        alert('Signup successful!');
+                        // Reset form
+                        signupForm.reset();
+                        // Switch to login
+                        container.classList.remove('active');
+                    }, 1500);
+                } else {
+                    // Shake animation for validation errors
+                    document.querySelectorAll('.signup-container .error').forEach(el => {
+                        el.classList.add('shake');
+                        setTimeout(() => {
+                            el.classList.remove('shake');
+                        }, 500);
+                    });
+                }
+            });
+            
+            // Input focus animations
+            document.querySelectorAll('.form-group input, .form-group select').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
+            });
+            
+            // Add the fade-in class to elements when the page loads
+            document.querySelectorAll('.login-container .form-group, .login-container h1, .login-container p, .login-container .btn, .login-container .social-container')
+                .forEach((el, i) => {
+                    setTimeout(() => {
+                        el.classList.add('fade-in');
+                    }, i * 100);
+                });
+        });
+        const container = document.querySelector('.container');
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        toggleBtn.addEventListener('click', () => {
+            container.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

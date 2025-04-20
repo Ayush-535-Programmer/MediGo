@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Add Medicine</title>
+  <link rel="stylesheet" href="../CSS/adminDashboard.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Add New Medicine</h1>
+    <form id="medicineForm">
+      <label for="medicineImage">Medicine Image</label>
+      <input type="file" id="medicineImage" accept="image/*" required />
+      <img id="imagePreview" src="" alt="Preview" class="hidden"/>
+
+      <label for="medicineName">Name</label>
+      <input type="text" id="medicineName" required />
+
+      <label for="medicineDescription">Description</label>
+      <textarea id="medicineDescription" rows="3" required></textarea>
+
+      <label for="medicineCategory">Category</label>
+      
+    <select id="medicineCategory" required>
+      <option value="">-- Select Category --</option>
+      <option value="Pain Relief">Pain Relief</option>
+      <option value="Cold & Flu">Cold & Flu</option>
+      <option value="Vitamins & Supplements">Vitamins & Supplements</option>
+      <option value="Digestive Health">Digestive Health</option>
+      <option value="Skin Care">Skin Care</option>
+      <option value="Antibiotics">Antibiotics</option>
+      <option value="Cardiovascular Health">Cardiovascular Health</option>
+      <option value="Diabetes Care">Diabetes Care</option>
+      <option value="Allergy Relief">Allergy Relief</option>
+      <option value="Cough & Cold Syrups">Cough & Cold Syrups</option>
+    </select>
+
+
+      <label for="medicinePrice">Price (in ₹)</label>
+      <input type="number" id="medicinePrice" required />
+
+
+      <label for="needPrescription">Need Prescription?</label>
+      <select id="needPrescription" required>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <button type="submit">Add Medicine</button>
+    </form>
+  </div>
+
+  <script src="../JavaScript/adminDashboard.js"></script>
+</body>
+</html>

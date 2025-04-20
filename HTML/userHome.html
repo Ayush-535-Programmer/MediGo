@@ -4,27 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medicine Delivery App</title>
-  <link rel="stylesheet" href="../CSS\userHomeStyle.css">
+  <link rel="stylesheet" href="../CSS/userHomeStyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
 <nav class="navbar">
-    <div class="hamburger" onclick="toggleSidebar()">
+    <div style="width: 20px;" class="hamburger" onclick="toggleSidebar()">
       <i class="fas fa-bars"></i>
     </div>
     
     <div class="nav-center">
-      <div class="home-icon">
+      <!-- <div class="home-icon">
         <i class="fas fa-home"></i>
-      </div>
+      </div> -->
       <div class="search-bar">
         <input type="text" placeholder="Search medicines...">
         <i class="fas fa-search"></i>
       </div>
-      <img class="cart-icon" style="filter: invert();" width="25px" src="../Images\icons\shopping-bag.png" alt="">
-
+      <div class="cart-container" onclick="showCartItems()">
+        <img class="cart-icon" style="filter: invert;" width="25px" src="../Images/icons/shopping-bag.png" alt="">
+        <span id="cart-count" class="cart-count">0</span> <!-- Cart count will be updated here -->
+      </div>
     </div>
+    
     <div class="profile-icon">
       <img width="25px" src="../Images/profile_icon.jpg" alt="Profile" class="profile-img" onclick="toggleProfileCard()" id="profile-img">
     </div>
@@ -34,70 +37,58 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <ul class="categories">
-      <li><a href="#">Pain Relief</a></li>
-      <li><a href="#">Cold & Flu</a></li>
-      <li><a href="#">Vitamins</a></li>
-      <li><a href="#">Digestive Health</a></li>
-      <li><a href="#">Skin Care</a></li>
+        <li><a href="#" data-category="all">All</a></li>
+        <li><a href="#" data-category="pain-relief">Pain Relief</a></li>
+        <li><a href="#" data-category="cold-flu">Cold & Flu</a></li>
+        <li><a href="#" data-category="vitamins-supplements">Vitamins & Supplements</a></li>
+        <li><a href="#" data-category="digestive-health">Digestive Health</a></li>
+        <li><a href="#" data-category="skin-care">Skin Care</a></li>
+        <li><a href="#" data-category="antibiotics">Antibiotics</a></li>
+        <li><a href="#" data-category="cardiovascular">Cardiovascular Health</a></li>
+        <li><a href="#" data-category="diabetes-care">Diabetes Care</a></li>
+        <li><a href="#" data-category="allergy-relief">Allergy Relief</a></li>
+        <li><a href="#" data-category="cough-syrups">Cough & Cold Syrups</a></li>
+        <li><a href="#" data-category="topical">Topical Treatments</a></li>
+        <li><a href="#" data-category="respiratory">Respiratory Care</a></li>
+        <li><a href="#" data-category="oral-hygiene">Oral Hygiene</a></li>
+        <li><a href="#" data-category="eye-care">Eye Care</a></li>
+        <li><a href="#" data-category="women-health">Women's Health</a></li>
+        <li><a href="#" data-category="men-health">Men's Health</a></li>
+        <li><a href="#" data-category="herbal-remedies">Herbal Remedies</a></li>
     </ul>
-    </div>
-  </aside>
+</aside>
 
 
  <!-- Profile Card (Hidden by Default) -->
-<div class="profile-card" id="profile-card">
-  <div class="profile-header">
-      <h3>User Profile</h3>
-      <i class="fas fa-times close-btn" onclick="toggleProfileCard()"></i>
-  </div>
-  <img src="../Images/profile_icon.jpg" alt="Profile" class="profile-card-img" id="profile-card-img">
-  <h2 id="profile-card-name">Ayush Mishra</h2>
-  <p id="profile-card-email">klas@gmail.com</p>
-  
-  <div class="profile-details">
-      <p><strong>Phone:</strong> <span id="profile-card-phone">48973589</span></p>
-      <p><strong>Gender:</strong> <span id="profile-card-gender">Male</span></p>
-      <p><strong>Address:</strong> <span id="profile-card-address">UP India</span></p>
-      <p><strong>DOB:</strong> <span id="profile-card-dob">2025-02-20</span></p>
-  </div>
+ <div class="profile-container" onclick="toggleProfileCard()">
+  <!-- <img id="profile-img" src="../Images\\profile_icon.jpg" alt="Profile" alt="Profile" /> -->
+  <span id="profile-name">User</span>
 </div>
 
-
+<div id="profile-card" class="profile-card" style="display: none;">
+  <!-- <img id="profile-card-img" src="C:\\Users\\hp\\Desktop\\Coding World\\MediGo - Project\\MediGo-Trial\\MediGo - Project\\MediGo - Project\\Images\\profile_icon.jpg" alt="Profile" /> -->
+  <h3 id="profile-card-name">Name</h3>
+  <p><strong>Email:</strong> <span id="profile-card-email"></span></p>
+  <p><strong>Phone:</strong> <span id="profile-card-phone"></span></p>
+  <p><strong>Address:</strong> <span id="profile-card-address"></span></p>
+  <p><strong>Gender:</strong> <span id="profile-card-gender"></span></p>
+  <p><strong>DOB:</strong> <span id="profile-card-dob"></span></p>
+  <button onclick="logout()">Logout</button>
+</div>
 
   <!-- Main Content -->
-  <main class="main-content">
-    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
-      <img src="../Images/medicine1.jpg" alt="Medicine">
-      <h3>Azax 500 (Ranbaxy)</h3>
-      <p>The medicine is for general purpose use only </p>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
-      <img src="../Images/medicine2.jpg" alt="Medicine">
-      <h3>LCZ PLUS</h3>
-      <p>The medicine is for general purpose use only </p>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
-      <img src="../Images/medicine3.jpg" alt="Medicine">
-      <h3>OTRIVIN NASAL SPRAY</h3>
-      <p>The medicine is for general purpose use only </p>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
-      <img src="../Images/medicine4.jpg" alt="Medicine">
-      <h3>CROCIN ADVANCE</h3>
-      <p>The medicine is for general purpose use only </p>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-    <div class="card" onmouseover="toggleAddButton(this, true)" onmouseout="toggleAddButton(this, false)">
-      <img src="../Images/medicine5.jpg" alt="Medicine">
-      <h3>AUGMENTIN 625 DUO</h3>
-      <p>The medicine is for general purpose use only </p>
-      <button class="add-btn">Add to Cart</button>
-    </div>
+  <main id="medicine-container" class="main-content">
+    
+
   </main>
 
-  <script src="../JavaScript\userHomeScript.js"></script>
+  <div id="cart-modal" class="cart-modal">
+    <h2>Your Cart</h2>
+    <ul id="cart-list"></ul>
+    <button class="close-btn" onclick="closeCartModal()">Close</button>
+  </div>
+  
+
+  <script src="../JavaScript/userHomeScript.js"></script>
 </body>
 </html>
